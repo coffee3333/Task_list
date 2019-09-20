@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Task{% endblock %}
+
+{% block menu %}
+    <a href="{% url 'task_view' task.pk %}">View</a>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="mt-5">Do you want to delete task {{ task.title }}?</h2>
+        <form method="POST" action="{% url 'task_delete' task.pk %}">
+            {% csrf_token %}
+            <p><input type="submit" value="Confirm" class="btn btn-outline-success btn-block"></p>
+            <p><a href="{% url 'task_view' task.pk %}"class="btn btn-outline-success btn-block">Cancel</a></p>
+        </form>
+    </div>
+{% endblock %}

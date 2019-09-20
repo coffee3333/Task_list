@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block menu %}
+    <a href="{% url 'task_add' %}" class="btn btn-outline-light">Add Article</a>
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">Tasks:</h1>
+    <hr/>
+    <div class="row">
+        {% for task in tasks %}
+            <div class="col-lg-3 col-md-6 mb-3"">
+                <div class="card rounded-0">
+                    <div class="card-body">
+                        <h2>{{ task.title }}</h2>
+                        <div class="container mb-5">{{ task.description}}</div>
+                        <div class="container">
+                            <div class="">
+                                <a href="{% url 'task_view' task.pk %}" class="btn btn-outline-success  btn-block">More</a>
+                            </div>
+                            <div class="">
+                                <a href="{% url 'edit' task.pk %}" class="btn btn-outline-success  btn-block">Edit</a>
+                            </div>
+                            <div class="">
+                                <a href="{% url "task_delete" task.pk %}" class="btn btn-outline-success  btn-block">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
